@@ -1,6 +1,5 @@
 // 4, Building Color Mode Switch
 import { HStack, Switch, Text, useColorMode } from '@chakra-ui/react'
-import React from 'react'
 
 const ColorModeSwitch = () => {
     // custom hook in chakra for toggling darkmode
