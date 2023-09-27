@@ -1,5 +1,5 @@
 // 5, fetching games
-import axios from "axios"
+import axios, { CanceledError } from "axios"
 
 export default axios.create({
     baseURL: "https://api.rawg.io/api",
@@ -7,3 +7,5 @@ export default axios.create({
         key: "03b82b74e0454e0f869bee378eb23bee"
     }
 })
+
+export { CanceledError }
