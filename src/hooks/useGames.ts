@@ -5,10 +5,18 @@
 import { useEffect, useState } from "react";
 import apiClient, { CanceledError } from "../services/api-clients";
 
+ // 7, Displaying platform icons
+export interface Platform { 
+    id: number;
+    name: string;
+    slug: string;
+}
+
 export interface Game {
     id: number;
     name: string;
     background_image: string;
+    parent_platforms: { platform: Platform}[] // array of platform objects with each plaform having Platform array
   }
   
   interface FetchGamesResponse {

@@ -16,9 +16,9 @@ const Gamegrid = () => {
   //     .catch(err => setError(err.message));
   // }, []);  export to useGames
 
-  const { games, error } = useGames();
+const { games, error } = useGames();
 
-  return (
+ return (
     <>
       {error && <Text>{error}</Text>}
       {/* columns to set no of columns in layout */}
@@ -26,7 +26,7 @@ const Gamegrid = () => {
         {games.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}
-      </SimpleGrid>
+      </SimpleGrid> 
     </>
   );
 };
