@@ -1,7 +1,7 @@
 import react from "react";
 import { Button, ButtonGroup, Grid, GridItem, Show } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
-
+// 1, create a responsive layout
 function App() {
   return (
     <Grid
