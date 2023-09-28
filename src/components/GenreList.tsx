@@ -2,15 +2,18 @@
 import React from "react";
 import useGenre, { Genre } from "../hooks/useGenre";
 import useData from "../hooks/useData";
-import { List, ListItem, HStack, Image, Text } from "@chakra-ui/react";
+import { List, ListItem, HStack, Image, Text, Spinner } from "@chakra-ui/react";
 import getCroppedImageUrl from "../services/image-url";
 
 const GenreList = () => {
   // render list of genre from useGenre.tsx
-  // const  {genres} = useGenre() // cutom hook
+  // const  {genres} = useGenre() // custom hook
 
-  const { data } = useGenre(); // generic hook
+  const { data, error, isLoading } = useGenre(); // generic hook
 
+  if (error) return null
+  if (isLoading) return <Spinner />
+  
   return (
     <List>
       {/* {genres.map(genre => <li key={genre.id}>{genre.name}</li>)} */}
@@ -22,7 +25,7 @@ const GenreList = () => {
               borderRadius={8}
               src={getCroppedImageUrl(genre.image_background)}
             ></Image>
-            <Text fontSize={'lg'}>{genre.name}</Text>
+            <Text fontSize={"lg"}>{genre.name}</Text>
           </HStack>
         </ListItem>
       ))}

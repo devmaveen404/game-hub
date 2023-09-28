@@ -16,7 +16,7 @@ function App() {
     // to define width; ths grid has 2 columns
      templateColumns={{
         base: '1fr',
-        lg: '200px 1fr'
+        lg: '200px 1fr',
      }}
     >
       {" "}
