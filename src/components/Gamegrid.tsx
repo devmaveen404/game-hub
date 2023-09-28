@@ -19,7 +19,7 @@ const Gamegrid = () => {
   // }, []);  export to useGames
 
   const { games, error, isLoading } = useGames();
-  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //10, loading skeletons
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; //10, loading skeletons
 
   return (
     <>
@@ -28,7 +28,7 @@ const Gamegrid = () => {
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding="10px"
-        spacing={10}
+        spacing={4}
       >
         {isLoading &&
           skeletons.map((skeleton) => (

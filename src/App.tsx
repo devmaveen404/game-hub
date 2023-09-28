@@ -7,11 +7,17 @@ import GenreList from "./components/GenreList";
 function App() {
   return (
     <Grid
+    //  to define Grid
       templateAreas={{
         base: `"nav"  "main"`,
         lg: `"nav nav"  "aside main"`, // larger than 1024px
       }} 
       width='100%'
+    // to define width; ths grid has 2 columns
+     templateColumns={{
+        base: '1fr',
+        lg: '200px 1fr'
+     }}
     >
       {" "}
       {/* page layout */}
@@ -19,7 +25,7 @@ function App() {
         <Navbar/>
       </GridItem>
       <Show above="lg"> {/* // renders on large screen and above */}
-      <GridItem area="aside" bg="gold">
+      <GridItem area="aside" paddingX={5}>
         <GenreList />
       </GridItem>
       </Show>

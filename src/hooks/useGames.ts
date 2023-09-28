@@ -25,9 +25,13 @@ export interface Game {
     results: Game[];
   }
   
+//(a) generic hook for fetching games 13
+// const useGames = () => useData<Game>("./games")
 
+//(b)
 const useGames = () => {
-    //hook to store games objects
+
+  //hook to store games objects
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   // 10, Loading skeletons
