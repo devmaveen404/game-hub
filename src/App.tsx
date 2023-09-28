@@ -2,6 +2,7 @@ import react from "react";
 import { Button, ButtonGroup, Grid, GridItem, Show } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import Gamegrid from "./components/Gamegrid";
+import GenreList from "./components/GenreList";
 // 1, create a responsive layout
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       </GridItem>
       <Show above="lg"> {/* // renders on large screen and above */}
       <GridItem area="aside" bg="gold">
-        Aside
+        <GenreList />
       </GridItem>
       </Show>
       <GridItem area="main">
