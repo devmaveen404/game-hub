@@ -7,10 +7,10 @@ import { Genre } from "../hooks/useGenre";
 
 // 14d
 interface Props {
-  selectedGenre: Genre | null
+  selectedGenre: Genre | null;
 }
 
-const Gamegrid = ({selectedGenre}: Props) => {
+const Gamegrid = ({ selectedGenre }: Props) => {
   // //hook to store games objects
   // const [games, setGames] = useState<Game[]>([]);
   // const [error, setError] = useState("");
@@ -23,7 +23,7 @@ const Gamegrid = ({selectedGenre}: Props) => {
   //     .then(res => setGames(res.data.results))
   //     .catch(err => setError(err.message));
   // }, []);  export to useGames
-  
+
   // 14d, passing selectedgenre to useGames, useGames is modified to take in selectedGenre
 
   const { data, error, isLoading } = useGames(selectedGenre);
@@ -40,7 +40,7 @@ const Gamegrid = ({selectedGenre}: Props) => {
       >
         {isLoading &&
           skeletons.map((skeleton) => (
-            // to pass styles dynamically, wrap the card component in the styles component 
+            // to pass styles dynamically, wrap the card component in the styles component
             <GameCardContainer key={skeleton}>
               <GameCardSkeleton key={skeleton} />
             </GameCardContainer>
