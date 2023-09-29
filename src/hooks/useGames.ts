@@ -4,6 +4,8 @@
 
 import { useEffect, useState } from "react";
 import apiClient, { CanceledError } from "../services/api-clients";
+import { Genre } from "./useGenre";
+import useData from "./useData";
 
  // 7, Displaying platform icons
 export interface Platform { 
@@ -25,11 +27,17 @@ export interface Game {
     results: Game[];
   }
   
-//(a) generic hook for fetching games 13
-// const useGames = () => useData<Game>("./games")
+//(a) generic hook for fetching games 13                                    ,14d filter genre, request                , dependencies
+const useGames = (selectedGenre: Genre | null ) => useData<Game>("./games", { params: { genres: selectedGenre?.id}}, [selectedGenre?.id])
+
+
+
+
+
+
 
 //(b)
-const useGames = () => {
+const /*useGames*/ u = () => {
 
   //hook to store games objects
   const [games, setGames] = useState<Game[]>([]);
