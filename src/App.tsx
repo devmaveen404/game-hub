@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Gamegrid from "./components/Gamegrid";
 import GenreList from "./components/GenreList";
 import { Genre } from "./hooks/useGenre";
+import PlatformSelector from "./components/PlatformSelector";
 // 1, create a responsive layoutv
 function App() {
   // 14a, Filtering games by genre, this involves by sharing two component by mapping them to their parent component (App.tsx)
@@ -39,6 +40,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
+        <PlatformSelector/>
         <Gamegrid selectedGenre={selectedGenre}/>
       </GridItem>
     </Grid>
