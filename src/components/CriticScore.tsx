@@ -11,7 +11,7 @@ const CriticScore = ({score}: Props) => {
     let color = score > 75 ? 'green' : score > 60 ? 'yellow': '';
 
   return (
-    <Badge colorScheme={color} fontSize="14px" padding={2} borderRadius="4px">{score}</Badge>
+    <Badge colorScheme={color} fontSize="13px" padding={2} borderRadius="4px">{score}</Badge>
   )
 };
 
