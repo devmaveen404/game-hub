@@ -7,6 +7,7 @@ import { Genre } from "./hooks/useGenre";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
+import GameHeading from "./components/GameHeading";
 
 // 18, Extracting Game Query Object, incapsulating state variables into one function(GameQuery)
 export interface GameQuery { // export to GameGrid.tsx
@@ -60,15 +61,18 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Flex paddingLeft={2} marginBottom={5}>
-          <Box marginRight={5}>
-            <PlatformSelector
-              selectedPlatform={/*selectedPlatform*/ gameQuery.platform}
-              onSelectPlatform={(platform) => /*setSelectedPlatform(platform)*/ setGameQuery({...gameQuery, platform})}
-            />
-          </Box>
-          <SortSelector sortOrder={gameQuery.sortOrder } onSelectSortOrder={(sortOrder) => setGameQuery({...gameQuery, sortOrder})} />
-        </Flex>
+        <Box paddingLeft={2}> {/* to align gameheading & platforselector */}
+          <GameHeading gameQuery={gameQuery}/>
+          <Flex marginBottom={5}>
+            <Box marginRight={5}>
+              <PlatformSelector
+                selectedPlatform={/*selectedPlatform*/ gameQuery.platform}
+                onSelectPlatform={(platform) => /*setSelectedPlatform(platform)*/ setGameQuery({...gameQuery, platform})}
+              />
+            </Box>
+            <SortSelector sortOrder={gameQuery.sortOrder } onSelectSortOrder={(sortOrder) => setGameQuery({...gameQuery, sortOrder})} />
+          </Flex>
+        </Box>
         <Gamegrid
         // selectedPlatform={/*selectedPlatform*/ gameQuery.platform}
         // selectedGenre={/*selectedGenre*/ gameQuery.genre}
