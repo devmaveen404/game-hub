@@ -31,7 +31,7 @@ export interface Game {
 //(a) generic hook for fetching games 13            ,14d filter genre, request                , dependencies
 const useGames = 
     (/* selectedGenre: Genre | null, selectedPlatform: Platform | null**/ gameQuery: GameQuery ) => 
-    useData<Game>("./games", { params: { genres: /*selectedGenre*/gameQuery.genre?.id, platforms: /*selectedPlatform*/gameQuery.platform?.id, ordering: gameQuery?.sortOrder}}, 
+    useData<Game>("./games", { params: { genres: /*selectedGenre*/gameQuery.genre?.id, platforms: /*selectedPlatform*/gameQuery.platform?.id, ordering: gameQuery?.sortOrder, search: gameQuery.searchText}}, 
     [/*selectedGenre?.id, selectedPlatform?.id*/ gameQuery])
 
 

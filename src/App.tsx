@@ -13,6 +13,7 @@ export interface GameQuery { // export to GameGrid.tsx
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string
+  searchText: string
 }
 
 // 1, create a responsive layoutv
@@ -44,7 +45,7 @@ function App() {
       {" "}
       {/* page layout */}
       <GridItem area="nav" bg="none">
-        <Navbar />
+        <Navbar  onSearch={(searchText) => setGameQuery({...gameQuery, searchText})}/>
       </GridItem>
       <Show above="lg">
         {" "}
