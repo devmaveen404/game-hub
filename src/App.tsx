@@ -1,15 +1,18 @@
 import react, { useState } from "react";
-import { Button, ButtonGroup, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Button, ButtonGroup, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import Gamegrid from "./components/Gamegrid";
 import GenreList from "./components/GenreList";
 import { Genre } from "./hooks/useGenre";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/useGames";
+import SortSelector from "./components/SortSelector";
+
 // 18, Extracting Game Query Object, incapsulating state variables into one function(GameQuery)
 export interface GameQuery { // export to GameGrid.tsx
   genre: Genre | null;
   platform: Platform | null;
+  sortOrder: string
 }
 
 // 1, create a responsive layoutv
@@ -56,10 +59,13 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <PlatformSelector
-          selectedPlatform={/*selectedPlatform*/ gameQuery.platform}
-          onSelectPlatform={(platform) => /*setSelectedPlatform(platform)*/ setGameQuery({...gameQuery, platform})}
-        />
+        <HStack spacing={5} paddingLeft={2} marginBottom={5}>
+          <PlatformSelector
+            selectedPlatform={/*selectedPlatform*/ gameQuery.platform}
+            onSelectPlatform={(platform) => /*setSelectedPlatform(platform)*/ setGameQuery({...gameQuery, platform})}
+          />
+          <SortSelector sortOrder={gameQuery.sortOrder } onSelectSortOrder={(sortOrder) => setGameQuery({...gameQuery, sortOrder})} />
+        </HStack>
         <Gamegrid
         // selectedPlatform={/*selectedPlatform*/ gameQuery.platform}
         // selectedGenre={/*selectedGenre*/ gameQuery.genre}
