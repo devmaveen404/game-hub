@@ -13,7 +13,12 @@ export interface Genre {
 //   count: number;
 //   results: Genre[]
 // }
+// fetching genre
+// const useGenre = () => useData<Genre>("./genres")
 
-const useGenre = () => useData<Genre>("./genres")
+
+// 23, shipping static genre data 
+import GenreData from "../Data/GenreData";
+const useGenre = () => ({data: GenreData, isLoading: false, error: null })
 
 export default useGenre

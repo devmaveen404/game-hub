@@ -21,6 +21,7 @@ export interface Game {
     background_image: string;
     parent_platforms: { platform: Platform}[] // array of platform objects with each plaform having Platform array
     metacritic: number;
+    rating_top: number;
   }
   
   interface FetchGamesResponse {

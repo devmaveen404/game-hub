@@ -1,4 +1,4 @@
-import noImage from '../assets/rockstar.ico'
+import noImage from '../assets/no-image-placeholder.webp'
 // 9, Optimize images
 const getCroppedImageUrl = (url: string) => {
 // 20, no Image cases
