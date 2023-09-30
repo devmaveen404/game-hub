@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import apiClient, { CanceledError } from "../services/api-clients";
 import { Genre } from "./useGenre";
 import useData from "./useData";
+import { GameQuery } from "../App";
 
  // 7, Displaying platform icons
 export interface Platform { 
@@ -27,8 +28,8 @@ export interface Game {
     results: Game[];
   }
   
-//(a) generic hook for fetching games 13                                    ,14d filter genre, request                , dependencies
-const useGames = (selectedGenre: Genre | null ) => useData<Game>("./games", { params: { genres: selectedGenre?.id}}, [selectedGenre?.id])
+//(a) generic hook for fetching games 13            ,14d filter genre, request                , dependencies
+const useGames = (/* selectedGenre: Genre | null, selectedPlatform: Platform | null**/ gameQuery: GameQuery ) => useData<Game>("./games", { params: { genres: /*selectedGenre*/gameQuery.genre?.id, platforms: /*selectedPlatform*/gameQuery.platform?.id}}, [/*selectedGenre?.id, selectedPlatform?.id*/ gameQuery])
 
 
 

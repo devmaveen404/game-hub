@@ -5,11 +5,24 @@ import Gamegrid from "./components/Gamegrid";
 import GenreList from "./components/GenreList";
 import { Genre } from "./hooks/useGenre";
 import PlatformSelector from "./components/PlatformSelector";
+import { Platform } from "./hooks/useGames";
+// 18, Extracting Game Query Object, incapsulating state variables into one function(GameQuery)
+export interface GameQuery { // export to GameGrid.tsx
+  genre: Genre | null;
+  platform: Platform | null;
+}
+
 // 1, create a responsive layoutv
 function App() {
   // 14a, Filtering games by genre, this involves by sharing two component by mapping them to their parent component (App.tsx)
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   // store Genre[]
+  // 17, filter platforms
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
+// 18, incapsulate selectedGenre & selectedPlatform
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)
 
   return (
     <Grid
@@ -22,7 +35,7 @@ function App() {
       // to define width; ths grid has 2 columns
       templateColumns={{
         base: "1fr",
-        lg: "200px 1fr",
+        lg: "250px 1fr",
       }}
     >
       {" "}
@@ -36,12 +49,22 @@ function App() {
         <GridItem area="aside" paddingX={5}>
           {" "}
           {/* 14c */}
-          <GenreList selectedGenre={selectedGenre} onSelectGenre={(genre) => setSelectedGenre(genre)} />
+          <GenreList
+            selectedGenre={ /*selectedGenre*/ gameQuery.genre}
+            onSelectGenre={(genre) => /* setSelectedGenre(genre) */ setGameQuery({...gameQuery, genre})}
+          />
         </GridItem>
       </Show>
       <GridItem area="main">
-        <PlatformSelector/>
-        <Gamegrid selectedGenre={selectedGenre}/>
+        <PlatformSelector
+          selectedPlatform={/*selectedPlatform*/ gameQuery.platform}
+          onSelectPlatform={(platform) => /*setSelectedPlatform(platform)*/ setGameQuery({...gameQuery, platform})}
+        />
+        <Gamegrid
+        // selectedPlatform={/*selectedPlatform*/ gameQuery.platform}
+        // selectedGenre={/*selectedGenre*/ gameQuery.genre}
+          gameQuery={gameQuery}
+        />
       </GridItem>
     </Grid>
   );
