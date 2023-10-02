@@ -8,7 +8,7 @@ import { GameQuery } from "../App";
 
 // 14d
 interface Props {
-  gameQuery: GameQuery //18
+  gameQuery: GameQuery; //18
   // selectedGenre: Genre | null;
   // selectedPlatform: Platform | null;
 }
@@ -29,31 +29,33 @@ const Gamegrid = ({ /*selectedGenre, selectedPlatform*/ gameQuery }: Props) => {
 
   // 14d, passing selectedgenre to useGames, useGames is modified to take in selectedGenre
 
-  const { data, error, isLoading } = useGames(/*selectedGenre, selectedPlatform*/ gameQuery);
+  const { data, error, isLoading } = useGames(
+    /*selectedGenre, selectedPlatform*/ gameQuery
+  );
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; //10, loading skeletons
 
-  if (error) return <Text>{error}</Text>
+  if (error) return <Text>{error}</Text>;
 
-  // columns to set no of columns in layout 
-  return ( 
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        padding="10px"
-        spacing={6}
-      >
-        {isLoading &&
-          skeletons.map((skeleton) => (
-            // to pass styles dynamically, wrap the card component in the styles component
-            <GameCardContainer key={skeleton}>
-              <GameCardSkeleton key={skeleton} />
-            </GameCardContainer>
-          ))}
-        {data.map((game) => (
-          <GameCardContainer key={game.id}>
-            <GameCard game={game} />
+  // columns to set no of columns in layout
+  return (
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+      padding="10px"
+      spacing={6}
+    >
+      {isLoading &&
+        skeletons.map((skeleton) => (
+          // to pass styles dynamically, wrap the card component in the styles component
+          <GameCardContainer key={skeleton}>
+            <GameCardSkeleton key={skeleton} />
           </GameCardContainer>
         ))}
-      </SimpleGrid>
+      {data.map((game) => (
+        <GameCardContainer key={game.id}>
+          <GameCard game={game} />
+        </GameCardContainer>
+      ))}
+    </SimpleGrid>
   );
 };
 
