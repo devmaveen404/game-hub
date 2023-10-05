@@ -1,13 +1,10 @@
 // 12(b), Custom hook for fetching genres
 import { useEffect, useState } from "react";
-import apiClient, { CanceledError } from "../services/api-clients";
+import APIClient, { CanceledError } from "../services/api-clients";
 import useData from "./useData";
+import { FetchResponse } from "../services/api-clients";
+import { useQuery } from '@tanstack/react-query'
 
-export interface Genre {
-   id: number;
-   name: string;
-   image_background: string;
-}
 // FetchGenreResponse has been defined as a generic interface in useData.tsx 
 // interface FetchGenresResponse {
 //   count: number;
@@ -19,6 +16,29 @@ export interface Genre {
 
 // 23, shipping static genre data 
 import GenreData from "../Data/GenreData";
-const useGenre = () => ({data: GenreData, isLoading: false, error: null })
+                           // same object as the react query object
+// const useGenre = () => ({data: GenreData, isLoading: false, error: null })
+
+
+// 26, passing reusable API Clients, import api-clients.ts
+const apiClient = new APIClient<Genre>('/genres');
+
+export interface Genre {
+   id: number;
+   name: string;
+   image_background: string;
+}
+
+//24, Fetching data with react query
+const useGenre = () => useQuery({
+   queryKey: ['genres'],
+   queryFn: apiClient.getAll, // defined in api-clients
+      // () => apiClient
+      // .get<FetchResponse<Genre>>('/genres') // GenreList.tsx line 38
+      // .then((res) => res.data),
+   staleTime: 24 * 60 * 60 * 1000, //fetched data stays in cache for 24hrs
+   initialData: { count: GenreData.length, results: GenreData} // load GenreData instead of spinner
+})
+
 
 export default useGenre

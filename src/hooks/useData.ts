@@ -1,15 +1,17 @@
+// 26, since reactquery is used the dataquery is no longer used !!!
+
 // 13, create a generic data fetching hook, goto useGames.tsx
 import { useEffect, useState } from "react";
-import apiClient, { CanceledError } from "../services/api-clients";
+import apiClient, { CanceledError, FetchResponse } from "../services/api-clients";
 import {AxiosRequestConfig} from 'axios' // to filter by genre when fetching games
 
-interface FetchResponse<T> {
-  count: number;
-  results: T[]
-}
-
+// export interface FetchResponse<T> {
+//   count: number;
+//   results: T[]
+// }
+                                      // to filter games
 const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: any[]) => {
-    const [data, setData] = useState<T[]>([]);
+  const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   // 10, Loading skeletons
   const [isLoading, setLoading] = useState(false)

@@ -5,7 +5,7 @@ import Gamegrid from "./components/Gamegrid";
 import GenreList from "./components/GenreList";
 import { Genre } from "./hooks/useGenre";
 import PlatformSelector from "./components/PlatformSelector";
-import { Platform } from "./hooks/useGames";
+import { Platform } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 
@@ -13,8 +13,8 @@ import GameHeading from "./components/GameHeading";
 export interface GameQuery { // export to GameGrid.tsx
   genre: Genre | null;
   platform: Platform | null;
-  sortOrder: string
-  searchText: string
+  sortOrder: string;
+  searchText: string;
 }
 
 // 1, create a responsive layoutv
@@ -51,7 +51,7 @@ function App() {
       <Show above="lg">
         {" "}
         {/* // renders on large screen and above */}
-        <GridItem area="aside" paddingX={5}>
+        <GridItem area="aside" paddingX={5}> 
           {" "}
           {/* 14c */}
           <GenreList
@@ -61,15 +61,15 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Box paddingLeft={2}> {/* to align gameheading & platforselector */}
+        <Box paddingLeft={2}> {/* to align gameheading & platformselector */}
           <GameHeading gameQuery={gameQuery}/>
           <Flex marginBottom={5}>
             <Box marginRight={5}>
               <PlatformSelector
                 selectedPlatform={/*selectedPlatform*/ gameQuery.platform}
                 onSelectPlatform={(platform) => /*setSelectedPlatform(platform)*/ setGameQuery({...gameQuery, platform})}
-              />
-            </Box>
+              /> 
+            </Box> 
             <SortSelector sortOrder={gameQuery.sortOrder } onSelectSortOrder={(sortOrder) => setGameQuery({...gameQuery, sortOrder})} />
           </Flex>
         </Box>
