@@ -4,11 +4,12 @@
 
 import { useEffect, useState } from "react";
 import APIClient, { CanceledError } from "../services/api-clients";
-import { Genre } from "./useGenre";
-import useData, { FetchResponse } from "../services/api-clients";
-import { GameQuery } from "../App";
-import { useQuery } from "@tanstack/react-query"
-import { Platform } from "./usePlatforms";
+import { Genre } from "../entities/Genre";
+import { FetchResponse } from "../services/api-clients";
+// import { GameQuery } from "../App";
+import { useInfiniteQuery } from "@tanstack/react-query"
+import useGameQueryStore from "../store";
+import { Game } from "../entities/Game"; //entitiies
 
  // 7, Displaying platform icons
 // export interface Platform {  // import from usePlatforms
@@ -20,32 +21,45 @@ import { Platform } from "./usePlatforms";
 // 26, Fetching games with react query
 const apiClient = new APIClient<Game>('/games');
 
-export interface Game {
-    id: number;
-    name: string;
-    background_image: string;
-    parent_platforms: { platform: Platform}[] // array of platform objects with each plaform having Platform array
-    metacritic: number;
-    rating_top: number;
-  }
-  
+// export interface Game {
+//     id: number;
+//     name: string;
+//     slug: string;
+//     description_raw: string;
+//     background_image: string;
+//     parent_platforms: { platform: Platform}[] // array of platform objects with each plaform having Platform array
+//     metacritic: number;
+//     rating_top: number;
+//   }
+
   interface FetchGamesResponse {
     count: number;
     results: Game[];
   }
 
   // 25, Fetching games with react query
-  const useGames = (gameQuery: GameQuery) => 
-    useQuery<FetchResponse<Game>, Error>({
+  const useGames = () => {
+
+    // Zustand Store
+    const gameQuery = useGameQueryStore(s => s.gameQuery)
+    // 27, implement infinite queries
+    return useInfiniteQuery<FetchResponse<Game>, Error>({
       queryKey: ['games', gameQuery],
-      queryFn: () => apiClient.getAll({
-          params: { genres: /*selectedGenre*/gameQuery.genre?.id, 
-            parent_platforms: /*selectedPlatform*/gameQuery.platform?.id, 
+      queryFn: ({ pageParam = 1 }) => apiClient.getAll({ //infinte query
+          params: { genres:  gameQuery.genreId, //selectedGenre, gameQuery.genre?.id, 
+            parent_platforms: /*selectedPlatform*/gameQuery.platformId, 
             ordering: gameQuery?.sortOrder, 
-            search: gameQuery.searchText
-          }
+            search: gameQuery.searchText,
+            page: pageParam,
+          },
         }),
-    });
+        getNextPageParam: (lastPage, allPages) => {
+          return lastPage.next ? allPages.length + 1 : undefined // next page no
+        },
+        staleTime: 24 * 60 * 60 * 1000
+    })
+  }
+  
     //     apiClient.get<FetchResponse<Game>>('/games', {
     //       params: { genres: /*selectedGenre*/gameQuery.genre?.id, 
     //       parent_platforms: /*selectedPlatform*/gameQuery.platform?.id, 
@@ -54,6 +68,7 @@ export interface Game {
     //     })
     //     .then(res => res.data)
     // })  // GameGrid.tsx
+    
   
 //(a) generic hook for fetching games 13            ,14d filter genre, request                , dependencies
 // const useGames = 

@@ -5,14 +5,16 @@ const ColorModeSwitch = () => {
   // custom hook in chakra for toggling darkmode
   const { toggleColorMode, colorMode } = useColorMode();
 
+  const theme = colorMode === "dark" ? "Dark Mode" : "Light Mode";
+
   return (
     <HStack>
-      <Switch 
+      <Switch
         colorScheme="green"
         isChecked={colorMode === "dark"}
         onChange={toggleColorMode}
       ></Switch>
-      <Text whiteSpace={"nowrap"}>Dark Mode</Text>
+      <Text whiteSpace={"nowrap"}>{theme}</Text>
     </HStack>
   );
 };

@@ -91,7 +91,7 @@ export default [  //export to useGenre
       ]
     },
     {
-      "id": 3,
+      "id": 3, 
       "name": "Adventure",
       "slug": "adventure",
       "games_count": 134310,

@@ -1,7 +1,7 @@
 // 12(b), Custom hook for fetching genres
 import { useEffect, useState } from "react";
 import APIClient, { CanceledError } from "../services/api-clients";
-import useData from "./useData";
+// import useData from "./useData";
 import { FetchResponse } from "../services/api-clients";
 import { useQuery } from '@tanstack/react-query'
 
@@ -10,12 +10,15 @@ import { useQuery } from '@tanstack/react-query'
 //   count: number;
 //   results: Genre[]
 // }
+
+
 // fetching genre
 // const useGenre = () => useData<Genre>("./genres")
 
 
 // 23, shipping static genre data 
 import GenreData from "../Data/GenreData";
+import { Genre } from "../entities/Genre";
                            // same object as the react query object
 // const useGenre = () => ({data: GenreData, isLoading: false, error: null })
 
@@ -23,11 +26,11 @@ import GenreData from "../Data/GenreData";
 // 26, passing reusable API Clients, import api-clients.ts
 const apiClient = new APIClient<Genre>('/genres');
 
-export interface Genre {
-   id: number;
-   name: string;
-   image_background: string;
-}
+// export interface Genre {
+//    id: number;
+//    name: string;
+//    image_background: string;
+// }
 
 //24, Fetching data with react query
 const useGenre = () => useQuery({
@@ -36,8 +39,9 @@ const useGenre = () => useQuery({
       // () => apiClient
       // .get<FetchResponse<Genre>>('/genres') // GenreList.tsx line 38
       // .then((res) => res.data),
+   //staleTime: ms('24h')
    staleTime: 24 * 60 * 60 * 1000, //fetched data stays in cache for 24hrs
-   initialData: { count: GenreData.length, results: GenreData} // load GenreData instead of spinner
+   initialData: { count: GenreData.length, results: GenreData, next: null}, // load GenreData instead of spinner
 })
 
 
