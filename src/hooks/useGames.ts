@@ -106,4 +106,4 @@ export interface Game {
 //   return {games, error, isLoading}
 // }
 
-// export default useGames
+ export default useGames
