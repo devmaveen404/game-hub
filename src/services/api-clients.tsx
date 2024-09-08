@@ -23,13 +23,14 @@ class APIClient<T> {
     this.endpoint = endpoint;
   }
 
+  // to fetch all games, platforms..
   getAll = (config: AxiosRequestConfig) => {
     return axiosInstance
       .get<FetchResponse<T>>(this.endpoint, config)
       .then((res) => res.data);
   };
 
-  // to get each game, 33
+  // to get each game details, 33
   get = (id: number | string) => {
     return axiosInstance
       .get<T>(this.endpoint + '/' + id)

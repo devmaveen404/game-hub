@@ -1,5 +1,4 @@
 // 35, BUILDING GAME ATTRIBUTES
-import React from 'react'
 import { Game } from '../entities/Game';
 import { SimpleGrid, Text } from '@chakra-ui/react';
 import CriticScore from './CriticScore';

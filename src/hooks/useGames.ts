@@ -32,10 +32,10 @@ const apiClient = new APIClient<Game>('/games');
 //     rating_top: number;
 //   }
 
-  interface FetchGamesResponse {
-    count: number;
-    results: Game[];
-  }
+ ` // interface FetchGamesResponse {
+  //   count: number;
+  //   results: Game[];
+  // }`
 
   // 25, Fetching games with react query
   const useGames = () => {
@@ -54,7 +54,7 @@ const apiClient = new APIClient<Game>('/games');
           },
         }),
         getNextPageParam: (lastPage, allPages) => {
-          return lastPage.next ? allPages.length + 1 : undefined // next page no
+          return lastPage.next ? allPages.length + 1 : undefined // no more pages
         },
         staleTime: 24 * 60 * 60 * 1000
     })

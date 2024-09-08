@@ -1,14 +1,11 @@
 // 12(a), fetching genres from api
-import React from "react";
 import useGenre from "../hooks/useGenre";
-import { Genre } from "../entities/Genre";
 // import useData from "../hooks/useData";
 import {
   List,
   ListItem,
   HStack,
   Image,
-  Text,
   Spinner,
   Button,
   Heading,

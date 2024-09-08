@@ -1,17 +1,16 @@
 // 8, Displaying Critic Score
-import { Badge, ColorModeContext } from '@chakra-ui/react';
-import React from 'react'
+import { Badge } from '@chakra-ui/react';
 
 interface Props {
-    score: number;
+  score: number;
 }
 
-const CriticScore = ({score}: Props) => {
-// set critic score color
-    let color = score > 75 ? 'green' : score > 60 ? 'yellow': '';
+const CriticScore = ({ score }: Props) => {
+  // set critic score color
+  let color = score > 75 ? 'green' : score > 60 ? 'yellow' : '';
 
   return (
-    <Badge colorScheme={color} fontSize="13px" padding={2} borderRadius="4px">{score}</Badge>
+    <Badge colorScheme={color} fontSize="13px" padding={1} borderRadius="4px">{score}</Badge>
   )
 };
 

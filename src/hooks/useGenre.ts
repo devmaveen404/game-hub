@@ -1,8 +1,6 @@
 // 12(b), Custom hook for fetching genres
-import { useEffect, useState } from "react";
-import APIClient, { CanceledError } from "../services/api-clients";
+import APIClient from "../services/api-clients";
 // import useData from "./useData";
-import { FetchResponse } from "../services/api-clients";
 import { useQuery } from '@tanstack/react-query'
 
 // FetchGenreResponse has been defined as a generic interface in useData.tsx 

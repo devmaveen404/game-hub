@@ -1,19 +1,20 @@
 // 3, Buiding Navigation Bar
-import { HStack, Image, Text } from "@chakra-ui/react";
-import logo from "../assets/logo.webp";
+import { HStack } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import Searchinput from "./Searchinput";
 import { Link } from "react-router-dom";
+import { SiGamebanana } from "react-icons/si";
 
 
 const Navbar = () => {
   return (
     // to render items horizontally
-    <HStack justifyContent="space-between" padding={3}>
+    <HStack bg={'none'} justifyContent="space-between" padding={3}>
       <Link to={'/'}>
-        <Image src={logo} borderRadius={15} boxSize={79} objectFit={'cover'}></Image>
+        <SiGamebanana color="red" size={'45px'} />
+        {/* <Image src={logo} borderRadius={15} boxSize={79} objectFit={'cover'}></Image> */}
       </Link>
-      <Searchinput/>
+      <Searchinput />
       <ColorModeSwitch></ColorModeSwitch>
     </HStack>
   );

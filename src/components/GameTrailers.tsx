@@ -1,5 +1,4 @@
 // 35, FETCHING GAME TRAILERS
-import React from 'react'
 import useTrailers from '../hooks/useTrailers'
 import { Spinner } from '@chakra-ui/react';
 
@@ -8,7 +7,7 @@ interface Props {
 }
 
 const GameTrailers = ({gameId}: Props) => {
-   const {data, isLoading, error} = useTrailers(gameId)
+   const {data, isLoading } = useTrailers(gameId) 
 
     if (isLoading) return <Spinner/>
     const first = data?.results[0]
