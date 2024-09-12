@@ -11,7 +11,7 @@ import { useInfiniteQuery } from "@tanstack/react-query"
 import useGameQueryStore from "../store";
 import { Game } from "../entities/Game"; //entitiies
 
- // 7, Displaying platform icons
+// 7, Displaying platform icons
 // export interface Platform {  // import from usePlatforms
 //     id: number;
 //     name: string;
@@ -32,44 +32,47 @@ const apiClient = new APIClient<Game>('/games');
 //     rating_top: number;
 //   }
 
- ` // interface FetchGamesResponse {
-  //   count: number;
-  //   results: Game[];
-  // }`
+// interface FetchGamesResponse {
+//   count: number;
+//   results: Game[];
+// }
 
-  // 25, Fetching games with react query
-  const useGames = () => {
+// 25, Fetching games with react query
+const useGames = () => {
 
-    // Zustand Store
-    const gameQuery = useGameQueryStore(s => s.gameQuery)
-    // 27, implement infinite queries
-    return useInfiniteQuery<FetchResponse<Game>, Error>({
-      queryKey: ['games', gameQuery],
-      queryFn: ({ pageParam = 1 }) => apiClient.getAll({ //infinte query
-          params: { genres:  gameQuery.genreId, //selectedGenre, gameQuery.genre?.id, 
-            parent_platforms: /*selectedPlatform*/gameQuery.platformId, 
-            ordering: gameQuery?.sortOrder, 
-            search: gameQuery.searchText,
-            page: pageParam,
-          },
-        }),
-        getNextPageParam: (lastPage, allPages) => {
-          return lastPage.next ? allPages.length + 1 : undefined // no more pages
-        },
-        staleTime: 24 * 60 * 60 * 1000
-    })
-  }
-  
-    //     apiClient.get<FetchResponse<Game>>('/games', {
-    //       params: { genres: /*selectedGenre*/gameQuery.genre?.id, 
-    //       parent_platforms: /*selectedPlatform*/gameQuery.platform?.id, 
-    //       ordering: gameQuery?.sortOrder, 
-    //       search: gameQuery.searchText}
-    //     })
-    //     .then(res => res.data)
-    // })  // GameGrid.tsx
-    
-  
+  // Zustand Store
+  const gameQuery = useGameQueryStore(s => s.gameQuery)
+  // 27, implement infinite queries
+  return useInfiniteQuery<FetchResponse<Game>, Error>({
+    queryKey: ['games', gameQuery],
+    queryFn: ({ pageParam = 1 }) => apiClient.getAll({ //infinte query
+      params: {
+        genres: gameQuery.genreId, //selectedGenre, gameQuery.genre?.id, 
+        parent_platforms: /*selectedPlatform*/gameQuery.platformId,
+        platforms: gameQuery.consoleId,  // filter by console
+        ordering: gameQuery?.sortOrder,
+        search: gameQuery.searchText,
+        page: pageParam,
+      },
+    }),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.next ? allPages.length + 1 : undefined // no more pages
+    },
+    initialPageParam: 1, // default page number
+    staleTime: 24 * 60 * 60 * 1000
+  })
+}
+
+//     apiClient.get<FetchResponse<Game>>('/games', {
+//       params: { genres: /*selectedGenre*/gameQuery.genre?.id, 
+//       parent_platforms: /*selectedPlatform*/gameQuery.platform?.id, 
+//       ordering: gameQuery?.sortOrder, 
+//       search: gameQuery.searchText}
+//     })
+//     .then(res => res.data)
+// })  // GameGrid.tsx
+
+
 //(a) generic hook for fetching games 13            ,14d filter genre, request                , dependencies
 // const useGames = 
 //     (/* selectedGenre: Genre | null, selectedPlatform: Platform | null**/ gameQuery: GameQuery ) => 
@@ -121,4 +124,4 @@ const apiClient = new APIClient<Game>('/games');
 //   return {games, error, isLoading}
 // }
 
- export default useGames
+export default useGames

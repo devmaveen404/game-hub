@@ -6,6 +6,7 @@ import GameCardContainer from "./GameCardContainer";
 // import { GameQuery } from "../App";
 import React from "react";
 import { SyncLoader } from "react-spinners";
+import { Game } from "../entities/Game";
 
 // 14d
 // interface Props {
@@ -40,7 +41,7 @@ const Gamegrid = (/*selectedGenre, selectedPlatform*/) => {
   } = useGames(/*selectedGenre, selectedPlatform gameQuery*/);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; //10, loading skeletons
 
-  if (error) return <Text>{error.message}</Text>;
+  if (error) return null;
 
   //28, infinte scroll
   // Games fetched so far
@@ -73,7 +74,7 @@ const Gamegrid = (/*selectedGenre, selectedPlatform*/) => {
         {/* infinite queries */}
         {data?.pages.map((page, index) => (
           <React.Fragment key={index}>
-            {page.results.map((game) => (
+            {page.results.map((game: Game) => (
               <GameCardContainer key={game.id}>
                 <GameCard game={game} />
               </GameCardContainer>

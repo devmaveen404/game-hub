@@ -14,7 +14,15 @@ interface Props {
 const GameCard = ({ game }: Props) => {
   return (
     <Card>
-      <Image src={getCroppedImageUrl(game.background_image)}></Image>
+      <Image
+        src={getCroppedImageUrl(game.background_image)}
+        className="scale-image"
+        objectFit="cover"
+        width="100%"
+        height="100%"
+        transition="transform 0.5s ease-in-out" // Smooth transition for scaling
+        transform="scale(1)" // Start with normal scale
+      />
       <CardBody>
         {/* {game.parent_platform.map(({platform}) => <Text>{platform.name}</Text>)} */}
         {/* mapping each parent_platform to grab it platform prop */}
@@ -24,7 +32,7 @@ const GameCard = ({ game }: Props) => {
           />
           <CriticScore score={game.metacritic} />
         </HStack>
-        <Heading fontSize="2xl">
+        <Heading fontSize="2xl" _hover={{ color: 'gray.600' }}>
           <Link to={"/games/" + game.slug}>{game.name}</Link> {/* router */}
           <Emoji rating={game.rating_top} />
         </Heading>

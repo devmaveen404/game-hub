@@ -10,18 +10,18 @@ import useGameQueryStore from "../store";
 
 const SortSelector = () => {
   const sortOrders = [
-    { value: "", label: "Relevance" },
+    { value: "updated", label: "Relevance" },
     { value: "-added", label: "Date added" },
     { value: "name", label: "Name" },
     { value: "-released", label: "Release date" },
     { value: "-metacritic", label: "Popularity" },
     { value: "-rating", label: "Average rating" },
   ];
- // 34, Zustand store
+  // 34, Zustand store
   const setSelectedSortOrder = useGameQueryStore(s => s.setSortOrder)
   const selectedSortOrder = useGameQueryStore(s => s.gameQuery.sortOrder)
   const currentSortOrder = sortOrders.find(order => order.value === selectedSortOrder)
-  
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>

@@ -1,10 +1,13 @@
 //30, HOME PAGE LAYOUT  from app.tsx
-import { Box, Flex, Grid, GridItem, Show, useColorModeValue } from '@chakra-ui/react'
+import { Box, Flex, Text, Grid, GridItem, Show, useColorModeValue } from '@chakra-ui/react'
 import GenreList from '../components/GenreList'
 import PlatformSelector from '../components/PlatformSelector'
 import GameHeading from '../components/GameHeading'
 import SortSelector from '../components/SortSelector'
 import Gamegrid from '../components/Gamegrid'
+import PlatformList from '../components/ConsoleList'
+import { Link } from 'react-router-dom'
+
 
 const HomePage = () => {
 
@@ -66,6 +69,10 @@ const HomePage = () => {
         >
           {" "}
           {/* 14c */}
+          <a href={'/'}>
+            <Text fontSize={'2xl'} fontWeight={'bold'} marginBottom={'6'}>Home</Text>
+          </a>
+          <PlatformList />
           <GenreList />
         </GridItem>
       </Show>

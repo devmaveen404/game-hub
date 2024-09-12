@@ -1,9 +1,7 @@
 //16, Building platform selector
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import React from "react";
 import usePlatforms from "../hooks/usePlatforms";
-import { Platform } from "../entities/Platform";
 import usePlatform from "../hooks/usePlatform";
 import useGameQueryStore from "../store";
 // import { Platform } from "../hooks/useGames";

@@ -14,6 +14,7 @@ const GameTrailers = ({gameId}: Props) => {
 
     return first ? (
         <video 
+        style={{ borderRadius: '30px', marginBottom: '10px'}}
         src={first.data[480]}
         poster={first.preview}
         controls

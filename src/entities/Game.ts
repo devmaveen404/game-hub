@@ -10,8 +10,10 @@ export interface Game {
   publishers: Publisher[]
   description_raw: string;
   background_image: string;
-  parent_platforms: { platform: Platform; }[]; // array of platform objects with each plaform having Platform array
+  parent_platforms: { platform: Platform }[]; // array of platform objects with each plaform having Platform array
   metacritic: number;
   rating_top: number;
+  released: string;
+  playtime: number;
 }
 

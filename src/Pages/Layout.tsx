@@ -5,7 +5,7 @@ import { Box } from '@chakra-ui/react'
 
 const Layout = () => {
   return (
-    <Box>
+    <Box maxWidth={'1920px'} mx="auto">
      <Navbar />
      <Box padding={5}>
        <Outlet />

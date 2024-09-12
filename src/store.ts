@@ -6,7 +6,8 @@ interface GameQuery { // export to GameGrid.tsx
     platformId?: number //Platform | null;
     sortOrder?: string;
     searchText?: string;
-  }
+    consoleId?: number
+}
 
 interface GameQueryStore {
     gameQuery: GameQuery
@@ -14,14 +15,16 @@ interface GameQueryStore {
     setGenreId: (genreId: number) => void;
     setPlatfromId: (platfromId: number) => void
     setSortOrder: (sortOrder: string) => void
+    setConsoleId: (consoleId: number) => void
 }
 
 const useGameQueryStore = create<GameQueryStore>(set => ({
     gameQuery: {},
-    setSearchText: (searchText) => set(() => ({ gameQuery: { searchText }})),
-    setGenreId: (genreId) => set(store => ({ gameQuery: { ...store.gameQuery, genreId}})),
-    setPlatfromId: (platformId) => set(store => ({ gameQuery: {...store.gameQuery, platformId}})),
-    setSortOrder: (searchText) => set(store => ({ gameQuery: {...store.gameQuery, searchText}}))
+    setSearchText: (searchText) => set(() => ({ gameQuery: { searchText } })),
+    setGenreId: (genreId) => set(store => ({ gameQuery: { ...store.gameQuery, genreId, consoleId: undefined } })),
+    setPlatfromId: (platformId) => set(store => ({ gameQuery: { ...store.gameQuery, platformId, consoleId: undefined } })),
+    setSortOrder: (sortOrder) => set(store => ({ gameQuery: { ...store.gameQuery, sortOrder } })),
+    setConsoleId: (consoleId) => set(store => ({ gameQuery: { ...store.gameQuery, consoleId, genreId: undefined, platformId: undefined } })),
 }))
 
 export default useGameQueryStore;
