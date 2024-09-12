@@ -14,6 +14,7 @@ import {
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
 import { useState } from "react";
+import { useSidebarStore } from "../sideBarStore";
 
 // interface Props {
 //   // 14b
@@ -29,6 +30,9 @@ const GenreList = () => {
   // 34, Zustand store
   const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
   const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
+
+  // state to close the modal 
+  const closeSidebar = useSidebarStore((state) => state.closeSidebar);
 
   const { data, error, isLoading } = useGenre(); // generic hook
 
@@ -58,7 +62,7 @@ const GenreList = () => {
               ></Image>
               <Button // To click on genres
                 fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
-                onClick={() => setSelectedGenreId(genre.id)}
+                onClick={() => { setSelectedGenreId(genre.id), closeSidebar() }}
                 fontSize={"lg"}
                 color={'black'}
                 _dark={{ color: "white" }}

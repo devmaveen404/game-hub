@@ -4,12 +4,17 @@ import getCroppedImageUrl from '../services/image-url';
 import { FaPlaystation, FaWindows, FaXbox } from "react-icons/fa";
 import { SiNintendo } from "react-icons/si";
 import useGameQueryStore from '../store';
+import { useSidebarStore } from '../sideBarStore';
+
 
 const ConsoleList = () => {
 
     // 34, Zustand store
     const selectedConsoleId = useGameQueryStore((c) => c.gameQuery.consoleId);
     const setSelectedConsoleId = useGameQueryStore((c) => c.setConsoleId);
+
+    // state to close the modal 
+    const closeSidebar = useSidebarStore((state) => state.closeSidebar);
 
     const { data } = useConsole()
 
@@ -38,7 +43,7 @@ const ConsoleList = () => {
                                         ></Image>
                                         <Button // To click on console platforms
                                             fontWeight={platform.id === selectedConsoleId ? "bold" : "normal"}
-                                            onClick={() => setSelectedConsoleId(platform.id)}
+                                            onClick={() => {setSelectedConsoleId(platform.id), closeSidebar()}}
                                             fontSize={"lg"}
                                             variant="link"
                                             whiteSpace={"normal"}
@@ -74,7 +79,7 @@ const ConsoleList = () => {
                                         ></Image>
                                         <Button // To click on gneres
                                             fontWeight={platform.id === selectedConsoleId ? "bold" : "normal"}
-                                            onClick={() => setSelectedConsoleId(platform.id)}
+                                            onClick={() => {setSelectedConsoleId(platform.id), closeSidebar()}}
                                             fontSize={"lg"}
                                             variant="link"
                                             whiteSpace={"normal"}
@@ -110,7 +115,7 @@ const ConsoleList = () => {
                                         ></Image>
                                         <Button // To click on console platforms
                                             fontWeight={platform.id === selectedConsoleId ? "bold" : "normal"}
-                                            onClick={() => setSelectedConsoleId(platform.id)}
+                                            onClick={() => {setSelectedConsoleId(platform.id), closeSidebar()}}
                                             fontSize={"lg"}
                                             variant="link"
                                             whiteSpace={"normal"}
@@ -146,7 +151,7 @@ const ConsoleList = () => {
                                         ></Image>
                                         <Button // To click on gneres
                                             fontWeight={platform.id === selectedConsoleId ? "bold" : "normal"}
-                                            onClick={() => setSelectedConsoleId(platform.id)}
+                                            onClick={() => {setSelectedConsoleId(platform.id), closeSidebar()}}
                                             fontSize={"lg"}
                                             variant="link"
                                             whiteSpace={"normal"}
