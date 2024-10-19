@@ -15,7 +15,7 @@ const ErrorPage = () => {
       <Flex direction={'column'} alignItems={'center'} justifyContent={'center'} minHeight={'70vh'} textAlign={'center'}>
         <Heading fontSize={'8xl'} >404</Heading>
         <Text fontSize={'3xl'} >
-          {isRouteErrorResponse(error) ? "This page does not exist." : "Somethin went wrong."}
+          {isRouteErrorResponse(error) ? "This page does not exist." : "Something went wrong."}
         </Text>
       </Flex>
     </>
